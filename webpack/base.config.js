@@ -28,6 +28,9 @@ module.exports = {
     }, {
       test: /\.(png|jpg|gif|svg)/,
       loader: 'url-loader?limit=8192',
+    }, {
+      test: /\.(woff|woff2|eot|ttf|otf)/,
+      loader: 'file-loader',
     }]
   },
   plugins: [

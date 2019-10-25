@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config webpack/dev.config.js",
-    "lint": "eslint --ext .js,.vue src",
-    "precommit": "npm run lint"
+    "lint": "eslint --ext .js,.vue src"
   },
   "keywords": [
     "vue"
@@ -38,5 +37,10 @@
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.3.1",
     "webpack-merge": "^4.2.1"
+  },
+  "husky": {
+    "hooks": {
+      "precommit": "npm run lint"
+    }
   }
 }

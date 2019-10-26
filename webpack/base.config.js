@@ -12,7 +12,10 @@ module.exports = {
     extensions: ['.js', '.vue', '.json', '.css', '.less'],
     alias: {
       'vue': 'vue/dist/vue.esm.js', // 默认vue用的runtime模式，但它不支持template
-      'features': path.resolve(__dirname, '../src/features')
+      'src': path.resolve(__dirname, '../src'),
+      'features': path.resolve(__dirname, '../src/features'),
+      'assets': path.resolve(__dirname, '../src/assets'),
+      'services': path.resolve(__dirname, '../src/services')
     }
   },
   module: {

@@ -1,14 +1,14 @@
 <template>
   <div class="login_container">
-    <el-form class="login_form" :model="loginForm" :rules="loginRules" label-width="80px">
+    <el-form :model="loginForm" :rules="loginRules" class="login_form" label-width="80px">
       <el-form-item label="用户名" prop="username">
         <el-input v-model="loginForm.username" />
       </el-form-item>
       <el-form-item label="密码" prop="password">
-        <el-input type="password" v-model="loginForm.password" show-password />
+        <el-input v-model="loginForm.password" type="password" show-password />
       </el-form-item>
       <el-form-item>
-        <el-button @click="onSubmit"  type="primary">
+        <el-button @click="onSubmit" type="primary">
           登录
         </el-button>
       </el-form-item>
@@ -50,6 +50,7 @@
 
     methods: {
       onSubmit() {
+        this.$store.dispatch('userLogin', this.loginForm)
       }
     }
   }

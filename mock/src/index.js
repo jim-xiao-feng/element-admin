@@ -1,6 +1,7 @@
-const Koa = require('koa')
-const bodyParser = require('koa-body')
-const { user } = require('./routes/user')
+import '@babel/polyfill'
+import Koa from 'koa'
+import bodyParser from 'koa-body'
+import { user } from './routes/user'
 
 const app = new Koa()
 

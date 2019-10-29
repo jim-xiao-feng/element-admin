@@ -4,8 +4,8 @@ import { Message } from 'element-ui'
 
 // 创建axios实例
 const http = axios.create({
-  baseURL: 'http://localhost', // api的base_url
-  timeout: 5000                // 请求超时时间
+  baseURL: 'http://localhost:3000', // api的base_url
+  timeout: 5000                     // 请求超时时间
 })
 
 // request拦截器

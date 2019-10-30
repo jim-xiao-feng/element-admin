@@ -42,6 +42,9 @@ export const user = () => {
         ctx.body = returnValue(20000, {
           token
         })
+      } else {
+        ctx.status = 401
+        ctx.body = returnValue(40001)
       }
       await next()
     }

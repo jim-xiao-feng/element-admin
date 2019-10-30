@@ -1,13 +1,13 @@
 export const login = {
   test: { // username 作为 primary key
     username: 'test',
-    salt: '6I5PpoUXQvTThp1_kAvJmgUd9vdZXqkempH6svN-QtTF~04cJGvXqLoWtVMwm0J8', // _genJwtS3et
-    hash: '05f1263b80e9f7525310309bb616d84d255083a258deaea44900985df4853a09' // salted password
+    salt: 'a1VEkTini-VIqklBKGVVwPh9IWTv2~Z0-h4SYcjeEpREhQTIKt0fxBWM.ZsbyK6p', // _genJwtS3et
+    hash: '6501944508acd886541b92cdb8a043832f81081d69429f1e28e19bf2f246723e' // salted password: (testtest)
   },
   admin: {
     username: 'admin',
-    salt: 'WBDu2ZPoAQxZhevHfnKe1x2Ji7CWXvRxGw3YsXbrrlDpktIH4CzUpIW59iP7bjc0',
-    hash: 'f31b07542c9a296f379498900c3515e76ccfe5ff407b5ec1b37f46cbc41313d5'
+    salt: 'IxLeNvdrOURprMS~5.uwrBpegodDZVBTFimM4t062GO3xg8e4_NH1x~xOVOhNP7m',
+    hash: '72a83f4ee09146a0be84dd0af460eb0464c1f460af4596465734257d9352543c' // (adminadmin)
   }
 }
 

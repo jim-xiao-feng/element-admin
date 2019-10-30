@@ -2,11 +2,14 @@ import { cloneDeep } from 'lodash'
 import fixtures from './fixtures'
 
 export const select = (name, key) => {
-  if (!key && fixtures[name]) {
-    return cloneDeep(fixtures[name])
-  }
-  if (key && fixtures[name][key]) {
-    return cloneDeep(fixtures[name][key])
+  if (fixtures[name]) {
+    if (!key) {
+      return cloneDeep(fixtures[name])
+    } else {
+      return cloneDeep(fixtures[name][key])
+    }
+  } else {
+    return undefined
   }
 }
 

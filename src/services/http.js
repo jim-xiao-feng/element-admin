@@ -12,22 +12,38 @@ const http = axios.create({
 http.interceptors.request.use(config => {
   const token = store.state.user.token
   if (token) {
-    config.headers[koten] = token
+    config.headers['authorization'] = `Bearer ${token}`
   }
   return config
 })
 
+// response拦截器
 http.interceptors.response.use(response => {
   const res = response.data
   if (res.code === 2000) {
     return res
   }
-}, error => {
+}, httpErrorHandler)
+
+function httpErrorHandler(error) {
+  let errorMessage = ''
+  const { message, response: { status } } = error
+  if (message.indexOf('Network Error') !== -1) {
+    errorMessage = '网络异常，请检查当前设备网络状况。'
+  } else if (message.indexOf('timeout') !== -1) {
+    errorMessage = '网络超时，请稍后重试。'
+  } else {
+    if (status >= 500) {
+      errorMessage = `服务器异常，错误码：${response.status}`
+    } else {
+      errorMessage = message
+    }
+  }
   Message({
-    message: error.message,
+    message: errorMessage,
     type: 'error'
   })
   return Promise.reject(error)
-})
+}
 
 export default http

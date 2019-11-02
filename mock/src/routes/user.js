@@ -12,7 +12,7 @@ export const user = () => {
   router.post(
     '/user/login',
     async (ctx, next) => {
-      ctx.cookies.set('X-Respond-Time', new Date())
+      ctx.cookies.set('X-Respond-Time', new Date().toDateString())
       try {
         await next()
       } catch(e) {

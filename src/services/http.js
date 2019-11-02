@@ -20,8 +20,8 @@ http.interceptors.request.use(config => {
 // response拦截器
 http.interceptors.response.use(response => {
   const res = response.data
-  if (res.code === 2000) {
-    return res
+  if (res.code === 20000) {
+    return res.data
   }
 }, httpErrorHandler)
 

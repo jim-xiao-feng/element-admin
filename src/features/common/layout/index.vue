@@ -1,5 +1,10 @@
 <template>
-  <LeftMenu />
+  <div class="home_container">
+    <LeftMenu />
+    <div>
+      <router-view />
+    </div>
+  </div>
 </template>
 <script>
 import LeftMenu from './components/LeftMenu'
@@ -9,3 +14,9 @@ export default {
   }
 }
 </script>
+<style scoped>
+  .home_container {
+    display: flex;
+    flex-direction: row;
+  }
+</style>

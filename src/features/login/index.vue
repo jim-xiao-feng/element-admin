@@ -1,6 +1,6 @@
 <template>
   <div class="login_container">
-    <el-form :model="loginForm" :rules="loginRules" class="login_form" label-width="80px">
+    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login_form" label-width="80px">
       <el-form-item label="用户名" prop="username">
         <el-input v-model="loginForm.username" />
       </el-form-item>
@@ -50,7 +50,13 @@
 
     methods: {
       onSubmit() {
-        this.$store.dispatch('userLogin', this.loginForm)
+        this.$refs.loginForm.validate(valid => {
+          if (valid) {
+            this.$store.dispatch('userLogin', this.loginForm).then(() => {
+              this.$router.push('/')
+            })
+          }
+        })
       }
     }
   }

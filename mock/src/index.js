@@ -1,7 +1,7 @@
 import '@babel/polyfill'
 import Koa from 'koa'
 import bodyParser from 'koa-body'
-import { user } from './routes/user'
+import { user, notFound } from './routes'
 
 const app = new Koa()
 
@@ -10,8 +10,11 @@ const start = () => {
   const port = process.env.PORT || 8000
   app.use(bodyParser({
     urlencoded: true
-  }))
-  app.use(user().routes())
+  }));
+
+  [user, notFound].forEach(api => {
+    app.use(api().routes())
+  })
   app.listen(port, host)
   console.log(`Server listening on http://${host}:${port}`)
 }

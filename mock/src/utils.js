@@ -1,4 +1,5 @@
 import crypto from 'crypto'
+import { statSync } from 'fs'
 import jwt from 'jsonwebtoken'
 import { Promise } from 'bluebird'
 import config from './config'
@@ -33,6 +34,14 @@ export const returnValue = (code, data) => {
     }
     case 40001: {
       result.message = '未授权或用户不存在'
+      break
+    }
+    case 40004: {
+      result.message = '无法找到用户详情'
+      break
+    }
+    case 49004: {
+      result.message = '不好意思，当前访问的资源不存在'
       break
     }
     case 50000: {
@@ -97,5 +106,20 @@ export const verifyToken = async (token) => {
         resolve(decoded) // {username: "test", iat: 1572321007, exp: 1572407407}
       }
     })
+  })
+}
+
+export const imageToBase64 = async (path) => {
+  const { readFile } = require('fs').promises
+  return new Promise((resolve) => {
+    if (statSync(path)) {
+      readFile(path).then(buf => {
+        resolve(buf.toString('base64'))
+      }).catch(err => {
+        resolve('')
+      })
+    } else {
+      resolve('')
+    }
   })
 }

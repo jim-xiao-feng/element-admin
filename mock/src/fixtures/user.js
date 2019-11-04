@@ -1,3 +1,5 @@
+import { resolve } from 'path'
+
 export const login = {
   test: { // username 作为 primary key
     username: 'test',
@@ -13,15 +15,15 @@ export const login = {
 
 export const user = {
   test: { // username 作为 primary key
-    ['test-user-info']: {
-      name: 'test',
-      intro: 'This is Test.'
-    }
+    name: 'test',
+    introduction: 'I\'m a tester',
+    avatar: resolve(__dirname, './avatar/deer0.jpg'),
+    roles: ['developer', 'tester']
   },
   admin: {
-    ['admin-user-info']: {
-      name: 'admin',
-      intro: 'This is Admin.'
-    }
+    name: 'admin',
+    introduction: 'I\'m an administrator',
+    avatar: resolve(__dirname, './avatar/dog0.jpg'),
+    roles: ['admin', 'developer', 'tester']
   }
 }

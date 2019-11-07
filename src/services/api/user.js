@@ -7,3 +7,10 @@ export function login(userInfo) {
     data: userInfo
   })
 }
+
+export function getUserInfo() {
+  return http({
+    url: '/user',
+    method: 'get',
+  })
+}

@@ -1,5 +1,5 @@
 import crypto from 'crypto'
-import { statSync } from 'fs'
+import { statSync, readFile } from 'fs'
 import jwt from 'jsonwebtoken'
 import { Promise } from 'bluebird'
 import config from './config'
@@ -110,10 +110,10 @@ export const verifyToken = async (token) => {
 }
 
 export const imageToBase64 = async (path) => {
-  const { readFile } = require('fs').promises
+  const readFileAsync = Promise.promisify(readFile)
   return new Promise((resolve) => {
     if (statSync(path)) {
-      readFile(path).then(buf => {
+      readFileAsync(path).then(buf => {
         resolve(buf.toString('base64'))
       }).catch(err => {
         resolve('')

@@ -67,6 +67,9 @@ export default () => {
           ctx.status = 401
           ctx.body = returnValue(40001)
         }
+      } else {
+        ctx.status = 401
+        ctx.body = returnValue(40001)
       }
     },
     async (ctx, next) => {

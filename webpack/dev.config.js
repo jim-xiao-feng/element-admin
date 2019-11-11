@@ -17,17 +17,12 @@ const devConfig = {
     open: true,
     // 解决开发跨域问题
     proxy: {
-      '/user':{
+      '/api':{
         target: 'http://localhost:8000',
-        pathRewrite: { '^/api': '' },
         changeOrigin: true,
-        secure: false
-      },
-      '/user/login': {
-        target: 'http://localhost:8000',
-        pathRewrite: { '^/api': '' },
-        changeOrigin: true,
-        secure: false
+        pathRewrite: {
+          '^/api': ''
+        }
       }
     }
   },

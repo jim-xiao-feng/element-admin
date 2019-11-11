@@ -17,7 +17,7 @@ export default {
       return new Promise((resolve) => {
         login(userInfo).then(res => {
           commit('setToken', res.token)
-          setCookie('TOKEN_KEY', res.token)
+          setCookie(TOKEN_KEY, res.token)
           const routes = constantRouters.concat(otherRouters)
           dispatch('setRoutes', routes)
           router.addRoutes(otherRouters)
@@ -30,6 +30,7 @@ export default {
       return new Promise((resolve) => {
         getUserInfo().then(res => {
           console.log('res', res)
+          commit('setUserInfo', res)
           resolve(res)
         })
       })
@@ -38,6 +39,9 @@ export default {
   mutations: {
     setToken: (state, token) => {
       state.token = token
+    },
+    setUserInfo: (state, userInfo) => {
+      state.userBaseInfo = userInfo
     }
   }
 

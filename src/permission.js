@@ -7,8 +7,8 @@ import { TOKEN_KEY } from 'src/constants/app'
 router.beforeEach(async(to, from, next) => {
   const token = getCookie(TOKEN_KEY)
   if (token) {
-    const role = store.state.user.userBaseInfo.role
-    if (role) {
+    const roles = store.state.user.userBaseInfo.roles
+    if (roles) {
       next()
     } else {
       // 获取用户信息

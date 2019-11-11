@@ -21,7 +21,7 @@ export const constantRouters = [{
 export const otherRouters = [{
   path: '/user',
   component: Layout,
-  meta: { title: '用户管理', key: 'userMange' },
+  meta: { title: '用户管理', key: 'userManage' },
   children: [{
     path: 'query',
     component: UserQuery,
@@ -30,7 +30,7 @@ export const otherRouters = [{
 }, {
   path: '/work',
   component: Layout,
-  meta: { title: '工作管理', key: 'workMange' },
+  meta: { title: '工作管理', key: 'workManage' },
   children: [{
     path: 'query',
     component: WorkQuery,

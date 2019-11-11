@@ -1,6 +1,8 @@
 import axios from 'axios'
 import store from 'src/store'
 import { Message } from 'element-ui'
+import { getCookie } from 'src/util/cookie'
+import { TOKEN_KEY } from 'src/constants/app'
 
 // 创建axios实例
 const http = axios.create({
@@ -10,7 +12,7 @@ const http = axios.create({
 
 // request拦截器
 http.interceptors.request.use(config => {
-  const token = store.state.user.token
+  const token = store.state.user.token || getCookie(TOKEN_KEY)
   if (token) {
     config.headers['authorization'] = `Bearer ${token}`
   }

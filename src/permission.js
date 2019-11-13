@@ -11,17 +11,21 @@ import {
 router.beforeEach(async (to, from, next) => {
   const token = getCookie(TOKEN_KEY)
   if (token) {
-    const roles = store.state.user.userBaseInfo.roles
-    if (roles) {
-      next()
+    if (to.path === '/login') {
+      next({ path: '/' })
     } else {
-      // 获取用户信息
-      await store.dispatch('getUserInfo')
-      // 添加路由
-      const routes = constantRouters.concat(otherRouters)
-      store.dispatch('setRoutes', routes)
-      router.addRoutes(otherRouters)
-      next({ ...to, replace: true })
+      const roles = store.state.user.userBaseInfo.roles
+      if (roles) {
+        next()
+      } else {
+        // 获取用户信息
+        await store.dispatch('getUserInfo')
+        // 添加路由
+        const routes = constantRouters.concat(otherRouters)
+        store.dispatch('setRoutes', routes)
+        router.addRoutes(otherRouters)
+        next({ ...to, replace: true })
+      }
     }
   } else {
     if (to.path === '/login') {

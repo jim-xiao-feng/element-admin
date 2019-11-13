@@ -1,6 +1,7 @@
 # element-admin
-vue+elementUI的管理系统
+vue+vue-router+vuex+elementUI的管理系统
 ## 开发
+
 ```bash
 # clone the project
 git clone https://github.com/jim-xiao-feng/element-admin.git
@@ -13,4 +14,10 @@ npm install
 
 # develop
 npm run start
+
+it will automatically open http://localhost:3000
+```
+## 生产
+```bash
+npm run build
 ```

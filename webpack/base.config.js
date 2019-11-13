@@ -23,12 +23,6 @@ module.exports = {
       test: /\.vue$/,
       loader: 'vue-loader'
     }, {
-      test: /\.css$/,
-      loader: 'style-loader!css-loader',
-    }, {
-      test: /\.less$/,
-      loader: 'style-loader!css-loader!less-loader',
-    }, {
       test: /\.(png|jpg|gif|svg)/,
       loader: 'url-loader?limit=8192',
     }, {
@@ -46,4 +40,9 @@ module.exports = {
     }),
     new VueLoaderPlugin()
   ],
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
+  },
 }

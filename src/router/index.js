@@ -39,6 +39,7 @@ export const otherRouters = [{
 }]
 
 export default new Router({
-  routes: constantRouters
+  routes: constantRouters,
+  mode: 'history'
 })
 

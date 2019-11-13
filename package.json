@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config webpack/dev.config.js",
+    "build": "webpack --config webpack/prod.config.js",
     "lint": "eslint --ext .js,.vue src"
   },
   "keywords": [
@@ -31,6 +32,7 @@
     "husky": "^2.3.0",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
+    "mini-css-extract-plugin": "^0.8.0",
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
     "vue-eslint-parser": "^6.0.4",

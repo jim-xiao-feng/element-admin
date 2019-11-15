@@ -19,5 +19,20 @@ it will automatically open http://localhost:3000
 ```
 ## 生产
 ```bash
+# compile
 npm run build
+```
+
+##### 配置 `nginx` :
+
+```nginx
+location /api/ {
+    proxy_pass http://localhost:8000/; # mock server
+}
+
+location / {
+    root   html/element-admin;
+    index  index.html;
+    try_files $uri $uri/ /index.html;
+}
 ```

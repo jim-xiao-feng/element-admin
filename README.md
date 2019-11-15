@@ -26,13 +26,18 @@ npm run build
 ##### 配置 `nginx` :
 
 ```nginx
-location /api/ {
-    proxy_pass http://localhost:8000/; # mock server
-}
+server {
+  listen        3000;
+  server_name   localhost;
 
-location / {
+  location /api/ {
+    proxy_pass http://127.0.0.1:8000/;
+  }
+
+  location / {
     root   html/element-admin;
     index  index.html;
     try_files $uri $uri/ /index.html;
+  }
 }
 ```

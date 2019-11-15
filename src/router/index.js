@@ -4,6 +4,7 @@ import Login from 'features/login'
 import Layout from 'features/common/layout'
 import UserQuery from 'features/views/userQuery'
 import WorkQuery from 'features/views/workQuery'
+import error404 from 'features/views/errorPage/404.vue'
 
 Vue.use(Router)
 
@@ -16,7 +17,11 @@ export const constantRouters = [{
   path: '/',
   component: Layout,
   hidden: true
-}]
+}, {
+  path: '/404',
+  component: error404,
+  hidden: true
+}, ]
 
 export const otherRouters = [{
   path: '/user',
@@ -36,6 +41,8 @@ export const otherRouters = [{
     component: WorkQuery,
     meta: { title: '工作查询', key: 'workQuery' }
   }]
+}, {
+  path: '*', redirect: '/404', hidden: true
 }]
 
 export default new Router({

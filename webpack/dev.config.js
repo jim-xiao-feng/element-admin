@@ -15,7 +15,16 @@ const devConfig = {
   module: {
     rules: [{
       test: /\.css$/,
-      loader: 'style-loader!css-loader',
+      use: [
+        'style-loader',
+        'css-loader',
+        {
+          loader: 'postcss-loader', // 给css加-webkit-前缀
+          options: {
+            plugins: [require('autoprefixer')]
+          }
+        }
+      ]
     }, {
       test: /\.less$/,
       loader: 'style-loader!css-loader!less-loader',

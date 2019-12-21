@@ -5,7 +5,7 @@ import store from './store'
 import router from './router'
 import './permission'
 import 'assets/less/reset.less'
-import 'element-ui/lib/theme-default/index.css'
+import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.use(ElementUI)
 

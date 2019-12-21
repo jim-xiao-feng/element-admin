@@ -15,11 +15,22 @@ module.exports = {
       'src': path.resolve(__dirname, '../src'),
       'features': path.resolve(__dirname, '../src/features'),
       'assets': path.resolve(__dirname, '../src/assets'),
-      'services': path.resolve(__dirname, '../src/services')
+      'services': path.resolve(__dirname, '../src/services'),
     }
   },
-  module: {
+  module: {  // 模块
     rules: [{
+      test: /\.js$/,
+      exclude: /(node_modules|bower_components)/,  // 减小转化范围
+      include: path.resolve(__dirname, '../src'),
+      use: {
+        loader: 'babel-loader',  // 将js转成es5
+        options: {
+          presets: ['@babel/preset-env'], // 转es6,比如const 箭头函数等
+          plugins: ['@babel/plugin-transform-runtime'] // async/await等es7需要这个转化
+        }
+      }
+    }, {
       test: /\.vue$/,
       loader: 'vue-loader'
     }, {

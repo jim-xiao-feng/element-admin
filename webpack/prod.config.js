@@ -26,15 +26,30 @@ const prodConfig = {
         options: {
           publicPath: '../'
         }
-      }, 'css-loader']
-    }, {
+      },
+      'css-loader',
+      {
+        loader: 'postcss-loader', // 给css加-webkit-前缀
+        options: {
+          plugins: [require('autoprefixer')]
+        }
+      }
+    ]}, {
       test: /\.less$/,
       use: [{
         loader: MiniCssExtractPlugin.loader,
         options: {
           publicPath: '../'
         }
-      }, 'css-loader', 'less-loader']
+      },
+      'css-loader',
+      {
+        loader: 'postcss-loader', // 给css加-webkit-前缀
+        options: {
+          plugins: [require('autoprefixer')]
+        }
+      },
+      'less-loader']
     }]
   }
 }

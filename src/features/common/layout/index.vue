@@ -2,15 +2,18 @@
   <div class="home_container">
     <LeftMenu />
     <div>
+      <Header />
       <router-view />
     </div>
   </div>
 </template>
 <script>
 import LeftMenu from './components/LeftMenu'
+import Header from './components/Header'
 export default {
   components: {
-    LeftMenu
+    LeftMenu,
+    Header
   }
 }
 </script>

@@ -1,6 +1,9 @@
 const path = require('path')
+const webpack = require('webpack')
 const webpackMerge = require('webpack-merge')
 const baseConfig = require('./base.config')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const devConfig = {
   mode: 'development',
@@ -48,6 +51,19 @@ const devConfig = {
 			index: '/index.html' //HTMLplugin生成的html默认为index.html
 		}
   },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new webpack.DefinePlugin({
+      env: JSON.stringify('development')
+    }),
+    new HtmlWebpackPlugin({
+        title: '管理系统',
+        template: 'src/index.html',   // 采用本地的template（默认会生成）
+        inject: 'body',
+        filename: 'index.html',
+        dlls: ''
+      }),
+  ]
 }
 
 module.exports = webpackMerge(baseConfig, devConfig)

@@ -15,27 +15,10 @@ const devConfig = {
     path: path.resolve(__dirname, '../dist'),
     filename: '[name].[hash].js',
   },
-  module: {
-    rules: [{
-      test: /\.css$/,
-      use: [
-        'style-loader',
-        'css-loader',
-        {
-          loader: 'postcss-loader', // 给css加-webkit-前缀
-          options: {
-            plugins: [require('autoprefixer')]
-          }
-        }
-      ]
-    }, {
-      test: /\.less$/,
-      loader: 'style-loader!css-loader!less-loader',
-    }],
-  },
   devServer: {
     port: '3000',
     open: true,
+    hot: true,
     // 解决开发跨域问题
     proxy: {
       '/api':{

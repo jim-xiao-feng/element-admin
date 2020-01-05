@@ -1,5 +1,9 @@
+const os = require('os')
 const path = require('path')
+const HappyPack = require('happypack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length })
 
 module.exports = {
   output: {
@@ -20,28 +24,64 @@ module.exports = {
   module: {  // 模块
     rules: [{
       test: /\.js$/,
-      exclude: /(node_modules|bower_components)/,  // 减小转化范围
+      exclude: /node_modules/,  // 减小转化范围
       include: path.resolve(__dirname, '../src'),
-      use: {
-        loader: 'babel-loader',  // 将js转成es5
-        options: {
-          presets: ['@babel/preset-env'], // 转es6,比如const 箭头函数等
-          plugins: ['@babel/plugin-transform-runtime'] // async/await等es7需要这个转化
-        }
-      }
+      loader: 'happypack/loader?id=happyPackBabelLoader'
     }, {
       test: /\.vue$/,
+      exclude: /node_modules/,  // 减小转化范围
       loader: 'vue-loader'
     }, {
+      test: /\.(css|less)$/,
+      use: [{
+        loader: MiniCssExtractPlugin.loader,
+        options: {
+          publicPath: '../'
+        }
+      },
+      'happypack/loader?id=happyPackStyle'
+      ]
+    }, {
       test: /\.(png|jpg|gif|svg)/,
-      loader: 'url-loader?limit=8192',
+      loader: 'url-loader?limit=8192'
     }, {
       test: /\.(woff|woff2|eot|ttf|otf)/,
-      loader: 'file-loader',
+      loader: 'file-loader'
     }]
   },
   plugins: [
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new MiniCssExtractPlugin({      // 分离css代码
+      filename: 'css/[name].[contenthash].css',
+    }),
+    // Webpack是单线程模型的
+    // HappyPack把任务分解给多个子进程去并发的执行，子进程处理完后再把结果发送给主进程。
+    new HappyPack({
+      id: 'happyPackBabelLoader',
+      loaders: [{
+        loader: 'babel-loader',  // 将js转成es5
+        options: {
+          cacheDirectory: true, // 启用缓存
+          presets: ['@babel/preset-env'], // 转es6,比如const 箭头函数等
+          plugins: ['@babel/plugin-transform-runtime'] // async/await等es7需要这个转化
+        }
+      }],
+      //代表共享进程池，即多个 HappyPack 实例都使用同一个共享进程池中的子进程去处理任务，以防止资源占用过多。
+      threadPool: happyThreadPool,
+      verbose: true, //允许 HappyPack 输出日志
+    }),
+    new HappyPack({
+      id: 'happyPackStyle',
+      loaders: [{
+        loader: 'css-loader'
+      }, {
+        loader: 'postcss-loader', // 给css加-webkit-前缀
+      }, {
+        loader: 'less-loader'
+      }],
+      //代表共享进程池，即多个 HappyPack 实例都使用同一个共享进程池中的子进程去处理任务，以防止资源占用过多。
+      threadPool: happyThreadPool,
+    })
   ],
   optimization: {
     splitChunks: {

@@ -31,9 +31,9 @@ const prodConfig = {
       // 这里列出要加入html中的js文件
       dlls: '../dll/vue.dll.js',
     }),
-    new webpack.DllReferencePlugin({
-      manifest: path.resolve(__dirname, '../dist/dll/vue.manifest.json')
-    }),
+    // new webpack.DllReferencePlugin({
+    //   manifest: path.resolve(__dirname, '../dist/dll/vue.manifest.json')
+    // }),
   ],
   optimization: {
     minimizer: [

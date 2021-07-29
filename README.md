@@ -3,16 +3,16 @@ vue+vue-router+vuex+elementUI的管理系统
 ## 开发
 
 ```bash
-# clone the project
+# 下载项目
 git clone https://github.com/jim-xiao-feng/element-admin.git
 
-# enter the project directory
+# 进入项目文件夹
 cd element-admin
 
-# install dependency
+# 安装依赖
 npm install
 
-# develop
+# 运行
 npm run start
 
 it will automatically open http://localhost:3000

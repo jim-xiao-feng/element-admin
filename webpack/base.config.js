@@ -4,6 +4,7 @@ const HappyPack = require('happypack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length })
+console.log('__dirname', __dirname, path.resolve(__dirname, '../src'))
 
 module.exports = {
   output: {

@@ -14,13 +14,13 @@ const prodConfig = {
     app: path.resolve(__dirname, '../src/index.js'),
   },
   output: {
-    path: path.resolve(__dirname, '../dist/code'),
+    path: path.resolve(__dirname, '../dist'),
     filename: '[name].bundle.[contenthash].js',
   },
   plugins: [
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: [`!${path.join(__dirname, '../dist/dll')}`, //  不删除dll文件夹
-      path.join(__dirname, '../dist/code')],  // 删除code文件夹
+      path.join(__dirname, '../dist')],  // 删除code文件夹
     }),
     new webpack.DefinePlugin({
       env: JSON.stringify('production')

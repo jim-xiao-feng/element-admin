@@ -29,14 +29,12 @@ jobs:
         tar -zcvf release.tgz dist
         
     # 第三步：发布 Release
-    - name: Create Release # 创建Release，可以在仓库看到一个个版本
-      id: create_release
-      uses: actions/create-release@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN }} # 之前GitHub添加的Token
-      with:
-        tag_name: ${{ github.ref }} # (tag)标签名称
-        release_name: Release ${{ github.ref }}
-        draft: false # 是否是草稿
-        prerelease: false # 是否是预发布
-    
+    - name: Deploy to Server
+      uses: hengkx/ssh-deploy@v1.0.1
+      with: # 以下为参数
+          USERNAME: ${{ secrets.USERNAME }} # 为了用户信息安全对敏感数据可以在secrets中配置请看下图
+          PASSWORD: ${{ secrets.PASSWORD }}
+          HOST: ${{ secrets.HOST }}
+          SOURCE: 'dist'
+          TARGET: '/usr/local/nginx/html'
+          AFTER_COMMAND: ''

@@ -36,5 +36,5 @@ jobs:
           PASSWORD: ${{ secrets.PASSWORD }}
           HOST: ${{ secrets.HOST }}
           SOURCE: 'dist'
-          TARGET: '/usr/local/nginx/html'
+          TARGET: '/usr/local/nginx/html/test'
           AFTER_COMMAND: ''
